@@ -19,7 +19,10 @@ function addQuote() {
   const newQuoteCategory = document.getElementById("newQuoteCategory").value;
   if (newQuoteText !== "" && newQuoteCategory !== "") {
     quotes.push({ text: newQuoteText, category: newQuoteCategory });
-    displayRandomQuote();
+    const quoteDisplay = document.getElementById("quoteDisplay");
+    const newQuoteElement = document.createElement("p");
+    newQuoteElement.textContent = `${newQuoteText} (${newQuoteCategory})`;
+    quoteDisplay.appendChild(newQuoteElement);
     document.getElementById("newQuoteText").value = "";
     document.getElementById("newQuoteCategory").value = "";
   }
