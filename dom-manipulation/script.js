@@ -49,6 +49,7 @@ if (conflicts.length > 0) {
 handleConflicts(conflicts);
 } else {
 updateLocalQuotesAndStorage(localQuotes, serverQuotes);
+alert('Quotes synced with server!');
 }
 } catch (error) {
 console.error('Error syncing data:', error);
@@ -78,6 +79,7 @@ body: JSON.stringify(quote)
 });
 const data = await response.json();
 console.log('Data posted to server:', data);
+alert('Quote posted to server!');
 } catch (error) {
 console.error('Error posting data to server:', error);
 }
@@ -112,6 +114,7 @@ const dismissConflictsBtn = document.getElementById('dismiss-conflicts-btn');
 dismissConflictsBtn.addEventListener('click', () => {
 dismissConflicts(conflicts);
 });
+alert('Conflicts detected!');
 }
 
 function resolveConflictsManually(conflicts) {
@@ -122,6 +125,7 @@ const serverQuote = conflict.serverQuote;
 // For example, you can prompt the user to choose which version to keep
 console.log(Conflict detected: ${localQuote.text} vs ${serverQuote.text});
 });
+alert('Conflicts resolved manually!');
 }
 
 function dismissConflicts(conflicts) {
@@ -130,6 +134,4 @@ const localQuote = conflict.localQuote;
 const serverQuote = conflict.serverQuote;
 // Dismiss conflict and update data
 // For example, you can update the local quote with the server quote
-console.log(Conflict dismissed: ${localQuote.text} updated to ${serverQuote.text});
-});
-}
+console.log(`Conflict dismissed: ${localQuote.text} updated
