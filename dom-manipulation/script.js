@@ -125,10 +125,4 @@ const importedQuotes = JSON.parse(event.target.result);
 quotes = importedQuotes;
 saveQuotesToLocalStorage();
 displayRandomQuote();
-alert('Quotes imported successfully!');
-} catch (error) {
-alert('Error importing quotes: ' + error.message);
-}
-};
-fileReader.readAsText(event.target.files[0]);
-}
+alert
