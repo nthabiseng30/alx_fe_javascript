@@ -63,6 +63,9 @@ console.error('Error syncing quotes:', error);
 }
 }
 
+// Periodically check for new quotes from the server
+setInterval(syncQuotes, 10000); // Check every 10 seconds
+
 // Post data to server
 async function postDataToServer(quote) {
 try {
