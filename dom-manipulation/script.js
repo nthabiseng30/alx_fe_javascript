@@ -25,22 +25,33 @@ function fetchDataFromServer() {
     .then(data => data.map(item => ({ text: item.title, category: item.userId })));
 }
 
+async function fetchDataFromServer() {
+  try {
+    const response = await fetch(serverUrl);
+    const data = await response.json();
+    return data.map(item => ({ text: item.title, category: item.userId }));
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+}
+
 function fetchQuotesFromServer() {
   return fetchDataFromServer();
 }
 
-function syncDataWithServer() {
-  fetchQuotesFromServer()
-    .then(serverQuotes => {
-      const localQuotes = getQuotesFromLocalStorage();
-      const conflicts = checkForConflicts(localQuotes, serverQuotes);
-      if (conflicts.length > 0) {
-        handleConflicts(conflicts);
-      } else {
-        updateLocalQuotesAndStorage(localQuotes, serverQuotes);
-      }
-    })
-    .catch(error => console.error('Error syncing data:', error));
+async function syncDataWithServer() {
+  try {
+    const serverQuotes = await fetchQuotesFromServer();
+    const localQuotes = getQuotesFromLocalStorage();
+    const conflicts = checkForConflicts(localQuotes, serverQuotes);
+    if (conflicts.length > 0) {
+      handleConflicts(conflicts);
+    } else {
+      updateLocalQuotesAndStorage(localQuotes, serverQuotes);
+    }
+  } catch (error) {
+    console.error('Error syncing data:', error);
+  }
 }
 
 // Local storage functions
