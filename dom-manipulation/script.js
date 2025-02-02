@@ -55,6 +55,14 @@ console.error('Error syncing data:', error);
 }
 }
 
+async function syncQuotes() {
+try {
+await syncDataWithServer();
+} catch (error) {
+console.error('Error syncing quotes:', error);
+}
+}
+
 // Post data to server
 async function postDataToServer(quote) {
 try {
