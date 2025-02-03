@@ -1,27 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dynamic Quote Generator</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Quote Generator</title>
 </head>
 <body>
-  <h1>Dynamic Quote Generator</h1>
-  <div id="quote-display"></div>
-  <form id="add-quote-form">
-    <input type="text" id="new-quote-text" placeholder="Enter a new quote">
-    <input type="text" id="new-quote-category" placeholder="Enter quote category">
-    <button id="add-quote-btn">Add Quote</button>
-  </form>
-  <button id="export-btn">Export Quotes</button>
-  <button id="import-btn">Import Quotes</button>
-  <div id="conflict-resolution-ui" style="display: none;">
-    <h2>Conflict Resolution</h2>
-    <p>Data has been updated, but conflicts were detected.</p>
-    <button id="resolve-conflicts-btn">Resolve Conflicts</button>
-    <button id="dismiss-conflicts-btn">Dismiss</button>
-  </div>
-  <script src="script.js"></script>
+<h1>Dynamic Quote Generator</h1>
+<div id="quoteDisplay"></div>
+<button id="newQuote">Show New Quote</button>
+<button id="addQuoteBtn">Add Quote</button>
+<input id="newQuoteText" type="text" placeholder="Enter a new quote">
+<input id="newQuoteCategory" type="text" placeholder="Enter quote category">
+<script src="script.js"></script>
 </body>
 </html>
