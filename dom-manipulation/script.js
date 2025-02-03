@@ -1,5 +1,6 @@
 // Array of quote objects
 let quotes = [];
+let selectedCategory = '';
 
 // Function to display a random quote
 function displayRandomQuote() {
@@ -29,13 +30,17 @@ document.getElementById("newQuoteCategory").value = "";
 // Function to save quotes to Local Storage
 function saveQuotesToLocalStorage() {
 localStorage.setItem('quotes', JSON.stringify(quotes));
+localStorage.setItem('selectedCategory', selectedCategory);
 }
 
 // Function to load quotes from Local Storage
 function loadQuotesFromLocalStorage() {
 const storedQuotes = localStorage.getItem('quotes');
+const storedSelectedCategory = localStorage.getItem('selectedCategory');
 if (storedQuotes) {
 quotes = JSON.parse(storedQuotes);
+selectedCategory = storedSelectedCategory;
+populateCategories();
 }
 }
 
@@ -68,6 +73,36 @@ alert('Error importing quotes: ' + error.message);
 fileReader.readAsText(event.target.files[0]);
 }
 
+// Function to populate categories
+function populateCategories() {
+const categoryFilter = document.getElementById("categoryFilter");
+const uniqueCategories = [...new Set(quotes.map(quote => quote.category))];
+uniqueCategories.forEach(category => {
+const option = document.createElement("option");
+option.value = category;
+option.text = category;
+categoryFilter.appendChild(option);
+});
+if (selectedCategory) {
+categoryFilter.value = selectedCategory;
+}
+}
+
+// Function to filter quotes
+function filterQuote() {
+const categoryFilter = document.getElementById("categoryFilter");
+selectedCategory = categoryFilter.value;
+saveQuotesToLocalStorage();
+const filteredQuotes = quotes.filter(quote => quote.category === selectedCategory);
+const quoteDisplay = document.getElementById("quoteDisplay");
+quoteDisplay.innerHTML = '';
+filteredQuotes.forEach(quote => {
+const quoteElement = document.createElement("p");
+quoteElement.textContent = ${quote.text} (${quote.category});
+quoteDisplay.appendChild(quoteElement);
+});
+}
+
 // Load quotes from Local Storage when the application initializes
 loadQuotesFromLocalStorage();
 displayRandomQuote();
@@ -77,3 +112,4 @@ document.getElementById("newQuote").addEventListener("click", displayRandomQuote
 document.getElementById("addQuoteBtn").addEventListener("click", addQuote);
 document.getElementById("exportBtn").addEventListener("click", exportToJsonFile);
 document.getElementById("importFile").addEventListener("change", importFromJsonFile);
+document.getElementById("categoryFilter").addEventListener("change", filterQuote);
