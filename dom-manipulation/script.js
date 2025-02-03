@@ -19,10 +19,7 @@ const newQuoteText = document.getElementById("newQuoteText").value;
 const newQuoteCategory = document.getElementById("newQuoteCategory").value;
 if (newQuoteText !== "" && newQuoteCategory !== "") {
 quotes.push({ text: newQuoteText, category: newQuoteCategory });
-const quoteDisplay = document.getElementById("quoteDisplay");
-const newQuoteElement = document.createElement("p");
-newQuoteElement.textContent = ${newQuoteText} (${newQuoteCategory});
-quoteDisplay.appendChild(newQuoteElement);
+displayRandomQuote();
 document.getElementById("newQuoteText").value = "";
 document.getElementById("newQuoteCategory").value = "";
 }
@@ -41,3 +38,6 @@ document.getElementById("newQuote").addEventListener("click", showRandomQuote);
 
 // Initial call to display a random quote
 displayRandomQuote();
+
+// Update the quote display every 10 seconds
+setInterval(displayRandomQuote, 10000);
