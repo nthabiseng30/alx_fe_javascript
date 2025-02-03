@@ -36,17 +36,6 @@ function showRandomQuote() {
 displayRandomQuote();
 }
 
-// Function to export quotes to JSON file
-function exportToJsonFile() {
-const jsonQuotes = JSON.stringify(quotes);
-const blob = new Blob([jsonQuotes], { type: 'application/json' });
-const url = URL.createObjectURL(blob);
-const a = document.createElement('a');
-a.href = url;
-a.download = 'quotes.json';
-a.click();
-}
-
 // Event listener for the "Show New Quote" button
 document.getElementById("showNewQuote").addEventListener("click", function(){
 displayRandomQuote();
@@ -55,11 +44,8 @@ displayRandomQuote();
 // Event listener for the "Add Quote" button
 document.getElementById("addQuoteBtn").addEventListener("click", addQuote);
 
-// Event listener for the "Export to JSON" button
-document.getElementById("exportToJsonBtn").addEventListener("click", exportToJsonFile);
-
 // Initial call to display a random quote
 displayRandomQuote();
 
 // Update the quote display every 10 seconds
-setInterval(displayRandomQuote, 10000);
+setInterval(displayRandomQuote, 10000);// Array of quote objects
