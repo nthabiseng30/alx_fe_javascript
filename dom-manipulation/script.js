@@ -39,14 +39,11 @@ displayRandomQuote();
 // Event listener for the "Show New Quote" button
 document.getElementById("newQuote").addEventListener("click", showRandomQuote);
 
+// Event listener for the "Add Quote" button
+document.getElementById("addQuoteBtn").addEventListener("click", addQuote);
+
 // Initial call to display a random quote
 displayRandomQuote();
 
 // Update the quote display every 10 seconds
 setInterval(displayRandomQuote, 10000);
-
-I added the following lines to the addQuote function:
-
-const newQuoteElement = document.createElement("p");
-newQuoteElement.textContent = ${newQuoteText} (${newQuoteCategory});
-quoteDisplay.appendChild(newQuoteElement);
