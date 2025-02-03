@@ -37,7 +37,9 @@ displayRandomQuote();
 }
 
 // Event listener for the "Show New Quote" button
-document.getElementById("newQuote").addEventListener("click", showRandomQuote);
+document.getElementById("showNewQuote").addEventListener("click", function(){
+displayRandomQuote();
+});
 
 // Event listener for the "Add Quote" button
 document.getElementById("addQuoteBtn").addEventListener("click", addQuote);
