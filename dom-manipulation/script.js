@@ -47,6 +47,18 @@ a.download = 'quotes.json';
 a.click();
 }
 
+// Function to import quotes from JSON file
+function importFromJsonFile(event) {
+const fileReader = new FileReader();
+fileReader.onload = function(event) {
+const importedQuotes = JSON.parse(event.target.result);
+quotes.push(...importedQuotes);
+displayRandomQuote();
+alert('Quotes imported successfully!');
+};
+fileReader.readAsText(event.target.files[0]);
+}
+
 // Event listener for the "Show New Quote" button
 document.getElementById("showNewQuote").addEventListener("click", function(){
 displayRandomQuote();
@@ -57,6 +69,9 @@ document.getElementById("addQuoteBtn").addEventListener("click", addQuote);
 
 // Event listener for the "Export to JSON" button
 document.getElementById("exportToJsonBtn").addEventListener("click", exportToJsonFile);
+
+// Event listener for the "Import from JSON" file input
+document.getElementById("importFile").addEventListener("change", importFromJsonFile);
 
 // Initial call to display a random quote
 displayRandomQuote();
